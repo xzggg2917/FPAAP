@@ -1,4 +1,4 @@
-# 🎉 打包成功！
+﻿# 🎉 打包成功！
 
 ## ✅ 已完成的工作
 
@@ -11,7 +11,7 @@
 
 安装程序位置：
 ```
-release\GAC Integra Setup 1.0.0.exe
+release\FPAAP Setup 1.0.0.exe
 ```
 
 文件大小：约 150-200 MB
@@ -61,32 +61,32 @@ git push origin v1.0.0
 2. **手动创建 Release**
    - 访问：`https://github.com/你的用户名/GAC_Integra/releases/new`
    - **Tag version**: `v1.0.0`
-   - **Release title**: `GAC Integra v1.0.0`
+   - **Release title**: `FPAAP v1.0.0`
    - **Description**: 复制下面的内容
-   - **Attach files**: 拖拽上传 `release\GAC Integra Setup 1.0.0.exe`
+   - **Attach files**: 拖拽上传 `release\FPAAP Setup 1.0.0.exe`
    - 点击 **Publish release**
 
 ### Release 描述内容：
 
 ```markdown
-## GAC Integra v1.0.0
+## FPAAP v1.0.0
 
-### Green Analytical Chemistry Integration Platform
+### Full-Process Analytical Assessment Platform
 
 **First Official Release! 🎉**
 
-GAC Integra provides a comprehensive multi-dimensional assessment framework for green analytical chemistry practices.
+FPAAP provides a comprehensive multi-dimensional assessment framework for green analytical chemistry practices.
 
 ### 📥 Installation
 
-1. Download `GAC Integra Setup 1.0.0.exe` below
+1. Download `FPAAP Setup 1.0.0.exe` below
 2. Run the installer
 3. Follow the setup wizard
-4. Launch GAC Integra from your desktop or start menu
+4. Launch FPAAP from your desktop or start menu
 
 ### ✨ Features
 
-- 🌱 **9-Dimensional Assessment**: Ecology, Practicality, Performance, Innovation, Industry, Society, Data, Circular Economy, and Completeness
+- 🌱 **9-Dimensional Assessment**: Environment, Practicality, Performance, Innovation, Industry, Society, Data, Circular Economy, and Completeness
 - 📊 **Interactive Visualization**: Dynamic treemap and sunburst diagrams with color-coded scores
 - ⚖️ **Flexible Weighting**: Customize dimension importance based on your research context
 - 💾 **Project Management**: Save and load assessment projects
@@ -150,7 +150,7 @@ For detailed usage instructions, visit the [Wiki](https://github.com/你的用�
 ```powershell
 # 运行安装程序
 cd release
-.\GAC Integra Setup 1.0.0.exe
+.\FPAAP Setup 1.0.0.exe
 
 # 测试应用功能
 # 1. 创建新项目

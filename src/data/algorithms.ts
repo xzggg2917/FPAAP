@@ -11,7 +11,7 @@ export interface Dimension {
 export const dimensions: Dimension[] = [
   { 
     id: 'green-ecology', 
-    name: 'Ecology', 
+    name: 'Environment', 
     fullName: 'Environmental Guardian',
     description: 'Focuses on the direct environmental impact of analytical methods, evaluating the entire process from reagent selection to waste disposal. Emphasizes low toxicity, low energy consumption, and minimal waste generation (GAC 12 principles).',
     role: 'Environmental Guardian',

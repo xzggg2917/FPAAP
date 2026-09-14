@@ -1,3 +1,23 @@
+export interface GuideSection {
+  label: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  formula?: { left: string; numerator: string; denominator: string; caption: string };
+}
+
+export interface GuideItem {
+  key: string;
+  symbol: string;
+  name: string;
+  summary: string;
+  sections: GuideSection[];
+}
+
+export interface ReferenceGuide {
+  title: string;
+  items: GuideItem[];
+}
+
 export interface Question {
   id: string;
   moduleId: string;
@@ -15,7 +35,9 @@ export interface Question {
     placeholder: string;
     min?: number;
     max?: number;
+    tooltip?: string;
   }>;
+  referenceGuide?: ReferenceGuide;
 }
 
 export interface Module {
@@ -145,7 +167,8 @@ export const redPerformanceModules: Module[] = [
             unit: '%',
             placeholder: 'Enter recovery rate (80-120)',
             min: 0,
-            max: 200
+            max: 200,
+            tooltip: 'Source: Spike recovery experiment data reported in the method validation report.'
           },
           {
             name: 'rsd',
@@ -153,7 +176,8 @@ export const redPerformanceModules: Module[] = [
             unit: '%',
             placeholder: 'Enter RSD (0-20)',
             min: 0,
-            max: 100
+            max: 100,
+            tooltip: 'Source: Precision experiment data reported in the method validation report (repeatability or intermediate precision).'
           }
         ]
       },
@@ -166,7 +190,7 @@ export const redPerformanceModules: Module[] = [
         multiInputFields: [
           {
             name: 'r2',
-            label: 'r² (Linear Correlation Coefficient)',
+            label: 'r² (Coefficient of Determination)',
             unit: '',
             placeholder: 'Enter r² value (0.990-1.000)',
             min: 0.99,
@@ -186,7 +210,96 @@ export const redPerformanceModules: Module[] = [
             placeholder: 'Enter regulatory threshold (e.g., 2.0)',
             min: 0
           }
-        ]
+        ],
+        referenceGuide: {
+          title: 'Data Entry Reference',
+          items: [
+            {
+              key: 'r2',
+              symbol: 'r²',
+              name: 'Coefficient of Determination',
+              summary: 'Measures how well the calibration response values fit a straight line across concentration; the closer to 1, the better the linearity.',
+              sections: [
+                {
+                  label: 'Data Source',
+                  bullets: [
+                    'Validated method: use the r² value reported in the method validation report.',
+                    'Literature method: use the r² value reported in the cited publication.',
+                    'Not yet validated: an expected value may be entered, clearly labelled as an estimate.'
+                  ]
+                },
+                {
+                  label: 'How to Enter',
+                  paragraphs: [
+                    'Enter the coefficient of determination r², not the correlation coefficient r. If the report only provides r, square it first. For example, r = 0.9995 corresponds to r² = 0.9990.'
+                  ]
+                },
+                {
+                  label: 'Reference Range',
+                  bullets: [
+                    'Assay / content determination: r² ≥ 0.998 typically required.',
+                    'Impurity determination: r² ≥ 0.980 typically required.'
+                  ]
+                }
+              ]
+            },
+            {
+              key: 'lod',
+              symbol: 'LOD',
+              name: 'Limit of Detection',
+              summary: 'The lowest concentration of the analyte that the method can reliably detect.',
+              sections: [
+                {
+                  label: 'Data Source',
+                  bullets: [
+                    'Validated method: use the LOD reported in the method validation report.',
+                    'Literature method: use the LOD reported in the cited publication; the unit must match C_req.',
+                    'Not yet validated: an expected or reference value may be entered, clearly labelled as an estimate.'
+                  ]
+                },
+                {
+                  label: 'Calculation (for reference)',
+                  paragraphs: [
+                    'If the report does not state the LOD directly, it can be derived by the signal-to-noise approach recommended in ICH Q2(R2):'
+                  ],
+                  formula: {
+                    left: 'LOD',
+                    numerator: '3 × N',
+                    denominator: 'S',
+                    caption: 'where N is the baseline noise of the blank sample and S is the slope of the calibration curve.'
+                  }
+                },
+                {
+                  label: 'How to Enter',
+                  paragraphs: [
+                    'Enter a numeric value in the same unit as the calibration curve (e.g., μg/mL).'
+                  ]
+                }
+              ]
+            },
+            {
+              key: 'creq',
+              symbol: 'C_reg',
+              name: 'Regulatory Threshold',
+              summary: 'The detection limit required by the intended use of the method.',
+              sections: [
+                {
+                  label: 'How to Enter',
+                  bullets: [
+                    'If a regulation or pharmacopoeia states the detection limit directly, enter that value.',
+                    'If it only states a reporting or acceptance limit for the sample, convert it — typically one tenth of that limit. For example, a limit of 1.0 μg/mL is entered as 0.1.'
+                  ]
+                },
+                {
+                  label: 'Units',
+                  paragraphs: [
+                    'Must be identical to the unit used for the calibration curve and for LOD.'
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       }
     ]
   }

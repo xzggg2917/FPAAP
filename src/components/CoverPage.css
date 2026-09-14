@@ -128,17 +128,9 @@
 .cover-subtitle {
   font-size: 18px;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   letter-spacing: 1px;
   animation: fadeInUp 1s ease 0.4s backwards;
-}
-
-.cover-description {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 50px;
-  line-height: 1.8;
-  animation: fadeInUp 1s ease 0.5s backwards;
 }
 
 .action-buttons {

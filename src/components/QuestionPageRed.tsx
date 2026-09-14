@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { redPerformanceModules } from '../data/redPerformanceQuestions'
+import type { ReferenceGuide } from '../data/redPerformanceQuestions'
 import { useDimension } from '../context/DimensionContext'
 import { getQuestionScoreColor } from '../utils/colorUtils'
 import MultiSelectDropdown from './MultiSelectDropdown'
@@ -7,6 +8,118 @@ import './QuestionPage.css'
 
 interface QuestionPageRedProps {
   onClose: () => void
+}
+
+const ChevronIcon: React.FC<{ open: boolean }> = ({ open }) => (
+  <svg
+    className={`reference-chevron ${open ? 'open' : ''}`}
+    width="14"
+    height="14"
+    viewBox="0 0 16 16"
+    aria-hidden="true"
+  >
+    <path d="M3 6 L8 11 L13 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
+
+const ReferenceCard: React.FC<{ guide: ReferenceGuide; accentColor: string }> = ({ guide, accentColor }) => {
+  const [openItems, setOpenItems] = useState<Set<string>>(new Set())
+
+  const toggleItem = (key: string) => {
+    setOpenItems(prev => {
+      const next = new Set(prev)
+      if (next.has(key)) {
+        next.delete(key)
+      } else {
+        next.add(key)
+      }
+      return next
+    })
+  }
+
+  const openCount = openItems.size
+  const totalCount = guide.items.length
+
+  return (
+    <div className="reference-card" style={{ borderColor: `${accentColor}55` }}>
+      <div className="reference-card-header">
+        <span className="reference-card-title">
+          <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" style={{ flexShrink: 0 }}>
+            <path
+              d="M2.5 2.5 A1.5 1.5 0 0 1 4 1 h6.8 a1 1 0 0 1 .7.3 l2.2 2.2 a1 1 0 0 1 .3.7 V13.5 A1.5 1.5 0 0 1 12.5 15 H4 a1.5 1.5 0 0 1 -1.5 -1.5 Z M4.5 1.8 h5.6 v3 h3.1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              strokeLinejoin="round"
+            />
+            <circle cx="6" cy="8.2" r="0.9" fill="currentColor" />
+            <circle cx="6" cy="11.2" r="0.9" fill="currentColor" />
+            <path d="M8 8.2 h3.5 M8 11.2 h3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+          </svg>
+          {guide.title}
+        </span>
+        <span className="reference-card-meta">
+          {openCount > 0 ? `${openCount}/${totalCount} expanded` : `${totalCount} items · click to expand`}
+        </span>
+      </div>
+
+      <div className="reference-items">
+        {guide.items.map((item) => {
+          const isOpen = openItems.has(item.key)
+          return (
+            <div key={item.key} className={`reference-item ${isOpen ? 'open' : ''}`}>
+              <button
+                type="button"
+                className="reference-item-header"
+                onClick={() => toggleItem(item.key)}
+                aria-expanded={isOpen}
+              >
+                <span className="reference-symbol" style={{ borderColor: `${accentColor}88`, color: accentColor }}>
+                  {item.symbol}
+                </span>
+                <span className="reference-name">{item.name}</span>
+                <span className="reference-summary">{item.summary}</span>
+                <ChevronIcon open={isOpen} />
+              </button>
+
+              {isOpen && (
+                <div className="reference-item-body">
+                  {item.sections.map((section, sIdx) => (
+                    <div key={sIdx} className="reference-section">
+                      <div className="reference-section-label">{section.label}</div>
+                      {section.paragraphs?.map((text, pIdx) => (
+                        <p key={pIdx} className="reference-paragraph">{text}</p>
+                      ))}
+                      {section.bullets && (
+                        <ul className="reference-bullets">
+                          {section.bullets.map((text, bIdx) => (
+                            <li key={bIdx}>{text}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {section.formula && (
+                        <div className="reference-formula-block">
+                          <div className="reference-formula">
+                            <span className="reference-formula-left">{section.formula.left}</span>
+                            <span className="reference-formula-equals">=</span>
+                            <span className="reference-formula-fraction">
+                              <span className="reference-formula-numerator">{section.formula.numerator}</span>
+                              <span className="reference-formula-denominator">{section.formula.denominator}</span>
+                            </span>
+                          </div>
+                          <p className="reference-formula-caption">{section.formula.caption}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 const QuestionPageRed: React.FC<QuestionPageRedProps> = ({ onClose }) => {
@@ -322,7 +435,15 @@ const QuestionPageRed: React.FC<QuestionPageRedProps> = ({ onClose }) => {
                         
                         return (
                           <div key={field.name} className="input-group">
-                            <label className="input-label">{field.label}</label>
+                            <span className="field-label-with-help">
+                              <label className="input-label">{field.label}</label>
+                              {field.tooltip && (
+                                <span className="field-help" tabIndex={0}>
+                                  <span className="field-help-icon">?</span>
+                                  <span className="field-help-popup" role="tooltip">{field.tooltip}</span>
+                                </span>
+                              )}
+                            </span>
                             <div className="input-with-unit">
                               <input
                                 type="number"
@@ -403,6 +524,10 @@ const QuestionPageRed: React.FC<QuestionPageRedProps> = ({ onClose }) => {
                       onChange={(values) => handleAnswerChange(question.id, values)}
                       placeholder="-- Select conditions (multiple) --"
                     />
+                  )}
+
+                  {question.referenceGuide && (
+                    <ReferenceCard guide={question.referenceGuide} accentColor={scoreColor} />
                   )}
 
                 </div>

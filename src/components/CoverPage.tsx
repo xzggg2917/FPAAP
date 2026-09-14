@@ -49,13 +49,8 @@ const CoverPage: React.FC<CoverPageProps> = ({ onNewProject, onOpenProject }) =>
           </div>
         </div>
 
-        <h1 className="cover-title">GAC Integra</h1>
-        <p className="cover-subtitle">Green Analytical Chemistry Integration Platform</p>
-        <p className="cover-description">
-          Comprehensive Assessment Platform for Green Analytical Chemistry
-          <br />
-          Multi-dimensional Evaluation & Analysis Tool
-        </p>
+        <h1 className="cover-title">FPAAP</h1>
+        <p className="cover-subtitle">Full-Process Analytical Assessment Platform</p>
 
         <div className="action-buttons">
           <button className="action-button new-project-button" onClick={handleNewProject}>

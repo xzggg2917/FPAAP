@@ -1,14 +1,14 @@
-# GAC Integra
+# FPAAP
 
-Green Analytical Chemistry Integration Platform
+Full-Process Analytical Assessment Platform
 
 ## Project Overview
 
-GAC Integra is a desktop application that integrates 9 key dimensions for comprehensive evaluation of analytical chemistry experiments' greenness.
+FPAAP is a desktop application that integrates 9 key dimensions for comprehensive evaluation of analytical chemistry experiments' greenness.
 
 ## Evaluation Dimensions
 
-1. **Green Ecology** (Environmental Guardian) - Focuses on environmental impact throughout the analytical process, from reagent selection to waste disposal. Core principles: low toxicity, low energy, minimal waste.
+1. **Green Environment** (Environmental Guardian) - Focuses on environmental impact throughout the analytical process, from reagent selection to waste disposal. Core principles: low toxicity, low energy, minimal waste.
 
 2. **Blue Practicality** (Laboratory Steward) - Evaluates practical usability and affordability in routine laboratories. Key aspects: cost-effectiveness, high throughput, equipment accessibility.
 

@@ -23,7 +23,7 @@ function createWindow() {
       allowRunningInsecureContent: false
     },
     autoHideMenuBar: true,
-    title: 'GAC Integra - Green Analytical Chemistry Integration Platform'
+    title: 'FPAAP - Full-Process Analytical Assessment Platform'
   });
 
   // 监听窗口关闭事件，清除会话标记

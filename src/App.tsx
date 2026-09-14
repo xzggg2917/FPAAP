@@ -101,8 +101,8 @@ function MainContent({ setActiveDimension, setShowVisualization }: { setActiveDi
       <header className="app-header">
         <div className="header-content">
           <div className="header-title">
-            <h1>GAC Integra</h1>
-            <p className="subtitle">Green Analytical Chemistry Integration Platform</p>
+            <h1>FPAAP</h1>
+            <p className="subtitle">Full-Process Analytical Assessment Platform</p>
           </div>
           <div className="header-actions">
             {currentFile && <p className="current-file">📄 {currentFile.split('\\').pop()?.split('/').pop()}</p>}

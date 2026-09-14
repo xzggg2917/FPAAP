@@ -1,4 +1,4 @@
-# 📦 如何发布到 GitHub Releases
+﻿# 📦 如何发布到 GitHub Releases
 
 ## 方式 1：自动发布（推荐）
 
@@ -45,32 +45,32 @@
    ```
 
 2. **查找安装程序**
-   - 位置：`release\GAC Integra Setup 1.0.0.exe`
+   - 位置：`release\FPAAP Setup 1.0.0.exe`
 
 3. **在 GitHub 创建 Release**
    - 访问：`https://github.com/你的用户名/你的仓库名/releases/new`
    - Tag version: `v1.0.0`
-   - Release title: `GAC Integra v1.0.0`
+   - Release title: `FPAAP v1.0.0`
    - 描述：复制下面的模板
-   - 拖拽上传 `GAC Integra Setup 1.0.0.exe`
+   - 拖拽上传 `FPAAP Setup 1.0.0.exe`
    - 点击 "Publish release"
 
 ### Release 描述模板：
 
 ```markdown
-## GAC Integra v1.0.0
+## FPAAP v1.0.0
 
-### Green Analytical Chemistry Integration Platform
+### Full-Process Analytical Assessment Platform
 
 **New Release Available!**
 
 Download the installer below to get started with comprehensive multi-dimensional assessment for green analytical chemistry.
 
 ### Installation
-1. Download `GAC Integra Setup 1.0.0.exe`
+1. Download `FPAAP Setup 1.0.0.exe`
 2. Run the installer
 3. Follow the setup wizard
-4. Launch GAC Integra from your desktop or start menu
+4. Launch FPAAP from your desktop or start menu
 
 ### Features
 - 🌱 9-dimensional green chemistry assessment
@@ -141,7 +141,7 @@ npm run build:electron
 
 # 测试安装程序
 cd release
-.\GAC Integra Setup 1.0.0.exe
+.\FPAAP Setup 1.0.0.exe
 ```
 
 ---
@@ -149,6 +149,6 @@ cd release
 **当前构建状态：**
 - ✅ React 应用构建成功
 - ✅ Electron 打包完成
-- ✅ 安装程序已生成：`release\GAC Integra Setup 1.0.0.exe`
+- ✅ 安装程序已生成：`release\FPAAP Setup 1.0.0.exe`
 - ✅ GitHub Actions 工作流已配置
 - ⏳ 等待推送到 GitHub 并创建标签

@@ -409,7 +409,7 @@ const VisualizationPage: React.FC<VisualizationPageProps> = ({ onClose }) => {
       // Create meaningful abbreviation based on pronunciation
       const dimName = dimension?.name || dimId
       const abbreviationMap: { [key: string]: string } = {
-        'Ecology': 'Eco',
+        'Environment': 'Env',
         'Practicality': 'Prac',
         'Performance': 'Perf',
         'Innovation': 'Inno',
@@ -438,7 +438,7 @@ const VisualizationPage: React.FC<VisualizationPageProps> = ({ onClose }) => {
     })
 
     return {
-      name: 'GAC Integra',
+      name: 'FPAAP',
       children: children
     }
   }, [selectedDimensions, scores, allAnswers])
