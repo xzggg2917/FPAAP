@@ -57,7 +57,7 @@ npm run build:electron
 ## Project Structure
 
 ```
-GAC_Integra/
+FAPPA/
 ├── electron/           # Electron main process
 │   └── main.js
 ├── src/               # React application source
